@@ -4,8 +4,10 @@ import { ProductsController } from './products.controller';
 import { TenantsMiddleware } from 'src/middlewares/tenants.middleware';
 import { tenantConnectionProvider } from 'src/providers/tenant-connection.provider';
 import { tenantModels } from 'src/providers/tenant-models.provider';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
+  imports: [AuthModule],
   controllers: [ProductsController],
   providers: [
     ProductsService,

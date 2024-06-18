@@ -4,7 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TenantsModule } from './tenants/tenants.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 import config from './config/config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -12,6 +14,9 @@ import config from './config/config';
       isGlobal: true,
       cache: true,
       load: [config],
+    }),
+    JwtModule.register({
+      global: true,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -23,6 +28,7 @@ import config from './config/config';
     TenantsModule,
     ProductsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
